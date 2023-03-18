@@ -1,17 +1,15 @@
--- Schema
+-- SCHEMA
 -- Created with and exported from QuickDBD: https://www.quickdatabasediagrams.com/
--- by Daniel Murillo.
+-- by Daniel Murillo. There were three sections in the process of creating the table schemas,
+-- importing the data, and adding the FK constraints:
 
--- TEMPORARY!!!!!
-DROP TABLE departments CASCADE;
-DROP TABLE dept_emp CASCADE;
-DROP TABLE dept_manager CASCADE;
-DROP TABLE employees CASCADE;
-DROP TABLE salaries CASCADE;
-DROP TABLE titles CASCADE;
+
+
+-- FIRST SECTION:
+-- I created a table schema for each of the six CSV files:
 
 -- Created a table for the 'departments.csv' file with the 'dept_no' column as PK —because its
--- values are unique— and assigned appropriate data types, the NOT NULL instruction, and
+-- values were unique— and assigned appropriate data types, the NOT NULL instruction, and
 -- accurate value lengths when necessary.
 CREATE TABLE "departments" (
     "dept_no" VARCHAR(4)   NOT NULL,
@@ -33,18 +31,18 @@ CREATE TABLE "dept_emp" (
 );
 
 -- Created a table for the 'dept_manager.csv' file with the 'emp_no' column as PK —because its
--- values are unique— and assigned appropriate data types, the NOT NULL instruction, and
+-- values were unique— and assigned appropriate data types, the NOT NULL instruction, and
 -- accurate value lengths.
 CREATE TABLE "dept_manager" (
-    "emp_no" int   NOT NULL,
     "dept_no" VARCHAR(4)   NOT NULL,
+	"emp_no" int   NOT NULL,
     CONSTRAINT "pk_dept_manager" PRIMARY KEY (
         "emp_no"
      )
 );
 
 -- Created a table for the 'employees.csv' file with the 'emp_no' column as PK —because its
--- values are unique— and assigned appropriate data types, the NOT NULL instruction, and
+-- values were unique— and assigned appropriate data types, the NOT NULL instruction, and
 -- accurate value lengths when necessary.
 CREATE TABLE "employees" (
     "emp_no" int   NOT NULL,
@@ -60,7 +58,7 @@ CREATE TABLE "employees" (
 );
 
 -- Created a table for the 'salaries.csv' file with the 'emp_no' column as PK —because its
--- values are unique— and assigned appropriate data types and the NOT NULL instruction.
+-- values were unique— and assigned appropriate data types and the NOT NULL instruction.
 CREATE TABLE "salaries" (
     "emp_no" int   NOT NULL,
     "salary" int   NOT NULL,
@@ -70,7 +68,7 @@ CREATE TABLE "salaries" (
 );
 
 -- Created a table for the 'titles.csv' file with the 'title_id' column as PK —because its
--- values are unique— and assigned appropriate data types, the NOT NULL instruction, and
+-- values were unique— and assigned appropriate data types, the NOT NULL instruction, and
 -- accurate value lengths when necessary.
 CREATE TABLE "titles" (
     "title_id" VARCHAR(5)   NOT NULL,
@@ -80,9 +78,21 @@ CREATE TABLE "titles" (
      )
 );
 
--- The next part contains the FKs. Adding the FK constraints after creating the tables works
--- better because it means the tables could be created in any order and it wouldn't cause any
--- errors —should the code be modified for future analyses, it would be easier to edit.
+
+
+-- SECOND SECTION:
+-- At this point, I used the 'Import/Export Data...' pgAdmin option to import the data. By doing
+-- so before the FKs were specified, I avoided errors that could be due to inserting data that, 
+-- according to pgAdmin, could violate the FK constraints that were specified in the third
+-- section of this process.
+
+
+
+-- THIRD SECTION:
+-- This section contains the FKs. Adding the FK constraints after creating the tables and
+-- inserting the data worked better because it meant that the tables could be created and
+-- updated in any order and it wouldn't cause any errors —should the code be modified for future
+-- analyses, it would also be easier to edit the code:
 
 -- Altered the 'dept_emp' table to add a constraint to turn its 'emp_no' column into a FK that
 -- referenced the 'emp_no' column from the 'employees' table (the relationship is many-to-one
