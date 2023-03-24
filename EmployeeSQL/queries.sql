@@ -1,4 +1,4 @@
--- Queries [pre-final]
+-- Queries
 
 -- To list the employee number, last name, first name, sex, and salary of each employee:
 SELECT e.emp_no AS "Employee Number",

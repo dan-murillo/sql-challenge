@@ -5,7 +5,7 @@
 
 
 
--- FIRST SECTION:
+-- FIRST STAGE:
 -- I created a table schema for each of the six CSV files:
 
 -- Created a table for the 'departments.csv' file with the 'dept_no' column as PK —because its
@@ -80,7 +80,7 @@ CREATE TABLE "titles" (
 
 
 
--- SECOND SECTION:
+-- SECOND STAGE:
 -- At this point, I used the 'Import/Export Data...' pgAdmin option to import the data. By doing
 -- so before the FKs were specified, I avoided errors that could be due to inserting data that, 
 -- according to pgAdmin, could violate the FK constraints that were specified in the third
@@ -88,7 +88,7 @@ CREATE TABLE "titles" (
 
 
 
--- THIRD SECTION:
+-- THIRD STAGE:
 -- This section contains the FKs. Adding the FK constraints after creating the tables and
 -- inserting the data worked better because it meant that the tables could be created and
 -- updated in any order and it wouldn't cause any errors —should the code be modified for future
