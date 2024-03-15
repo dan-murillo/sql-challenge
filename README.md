@@ -2,7 +2,7 @@
 
 This repository contains a quick project in which I was tasked to do research about a group of previous employees of a fictional company called _Pewlett Hackard_ as a data engineer. I was given a small database of six CSV files about people whom the company employed during the 1980s and 1990s.
 
-First, I modelled the data to create a suitable Entity Relationship Diagram (ERD) and designed tables to hold the data from the CSV files. Next, I engineered a SQL database to which I imported the files. Finally, I analysed the data by coding eight queries to get detailed information about the employees, their salary, and their departments. 
+First, I modelled the data to create a suitable Entity Relationship Diagram (ERD) and designed tables to hold the data from the CSV files. Next, I engineered a SQL database, using PosgreSQL, to which I imported the files. Finally, I analysed the data by coding eight queries to get detailed information about the employees, their salary, and their departments. 
 
 You will find all the files in the _EmployeeSQL_ folder, which contains:
 
